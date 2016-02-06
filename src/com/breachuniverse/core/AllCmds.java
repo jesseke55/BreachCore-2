@@ -1,20 +1,28 @@
 package com.breachuniverse.core;
 
 import com.breachuniverse.core.guis.Menus;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.Plugin;
 
 /**
  * Created by Beheerder on 2/5/2016.
  */
 public class AllCmds implements Listener, CommandExecutor {
 
+
+    Plugin INSTANCE = Main.getPlugin();
+
+
     public boolean onCommand(CommandSender sender, Command cmd, String commandlabel, String[] args)
     {
+        final FileConfiguration config = Main.getPlugin().getConfig();
 if(cmd.getName().equalsIgnoreCase("website")){
     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Main.getPlugin().getConfig().getString("Basic.Website")));
 }
@@ -62,7 +70,27 @@ if(cmd.getName().equalsIgnoreCase("website")){
 
 
 
+        if (cmd.getName().equalsIgnoreCase("broadcast"))
+        {
+            if (!sender.hasPermission("breach.cmds.bc"))
+            {
+                sender.sendMessage(INSTANCE.getConfig().getString("no-permission"));
+                return false;
+            }
+            if (args.length == 0)
+            {
+                sender.sendMessage(ChatColor.RED + "You need to type something!");
+                return false;
+            }
 
+            String msg = "";
+
+            for(int i = 0; i < args.length; i++) {
+                msg += args[i] + " ";
+            }
+
+            Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', msg.trim()));
+        }
 
 
         if(cmd.getName().equalsIgnoreCase("breachcore")){
@@ -75,6 +103,6 @@ if(cmd.getName().equalsIgnoreCase("website")){
             }
         }
 
-        return true;
+        return false;
     }
 }
