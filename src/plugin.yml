@@ -1,0 +1,15 @@
+name: BreachCore
+version: 1.0
+main: com.breachuniverse.core.Main
+
+commands:
+  website:
+    usage: /<command>
+    description: website
+  ts:
+    usage: /<command>
+    description: teamspeak
+    aliases: [ts3, teamspeak3, teamspeak]
+  help:
+    usage: /<command>
+    description: Get some help!
