@@ -1,5 +1,6 @@
 package com.breachuniverse.core;
 
+import com.breachuniverse.core.events.ChatCommand;
 import com.breachuniverse.core.guis.ClickEvents;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
@@ -54,6 +55,9 @@ public class Main extends JavaPlugin implements Listener{
         getConfig().addDefault("Servers.Paintball.Name", "&bPaintball");
         getConfig().addDefault("Servers.Paintball.Server", "pb");
 
+        getConfig().addDefault("Servers.Prison.Name","&8Prison");
+        getConfig().addDefault("Servers.Prison.Server", "prison");
+
 
 
         getConfig().options().copyDefaults(true);
@@ -70,5 +74,6 @@ public class Main extends JavaPlugin implements Listener{
     private void registerListener(){
         getServer().getPluginManager().registerEvents(this, this);
         getServer().getPluginManager().registerEvents(new ClickEvents(), this);
+        getServer().getPluginManager().registerEvents(new ChatCommand(), this);
     }
 }

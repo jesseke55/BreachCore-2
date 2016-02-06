@@ -52,6 +52,10 @@ final FileConfiguration config = Main.getPlugin().getConfig();
            if(e.getCurrentItem().getItemMeta().getDisplayName()
                    .equals(ChatColor.translateAlternateColorCodes('&', config.getString("Servers.Paintball.Name"))))
                send(p, config.getString("Servers.Paintball.Server"));
+
+            if(e.getCurrentItem().getItemMeta().getDisplayName()
+                    .equals(ChatColor.translateAlternateColorCodes('&', config.getString("Servers.Prison.Name"))))
+                send(p, config.getString("Servers.Prison.Server"));
         }
 
 

@@ -1,6 +1,8 @@
 package com.breachuniverse.core;
 
 import com.breachuniverse.core.guis.Menus;
+import com.google.common.io.ByteArrayDataOutput;
+import com.google.common.io.ByteStreams;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -42,12 +44,37 @@ if(cmd.getName().equalsIgnoreCase("website")){
         }
 
         if(cmd.getName().equalsIgnoreCase("server")){
+
             if(sender instanceof Player){
                 sender.sendMessage("You are not a player!");
             }else{
-                Player p = (Player)sender;
-                p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6Opening server menu for you!"));
-                p.openInventory(new Menus().servers());
+
+                if(args.length ==0){
+                    Player p = (Player)sender;
+                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6Opening server menu for you!"));
+                    p.openInventory(new Menus().servers());
+                }
+                else if(args[1].equalsIgnoreCase("pb")){
+                    Player p = (Player)sender;
+                    ByteArrayDataOutput out = ByteStreams.newDataOutput();
+                    out.writeUTF("Connect");
+                    out.writeUTF(config.getString("Servers.Paintball.Server"));
+                    p.sendPluginMessage(Main.getPlugin(Main.class), "BungeeCord", out.toByteArray());
+                }
+                else if(args[1].equalsIgnoreCase("paintball")){
+                    Player p = (Player)sender;
+                    ByteArrayDataOutput out = ByteStreams.newDataOutput();
+                    out.writeUTF("Connect");
+                    out.writeUTF(config.getString("Servers.Paintball.Server"));
+                    p.sendPluginMessage(Main.getPlugin(Main.class), "BungeeCord", out.toByteArray());
+                }
+                else if(args[1].equalsIgnoreCase("prison")){
+                    Player p = (Player)sender;
+                    ByteArrayDataOutput out = ByteStreams.newDataOutput();
+                    out.writeUTF("Connect");
+                    out.writeUTF(config.getString("Servers.Prison.Server"));
+                    p.sendPluginMessage(Main.getPlugin(Main.class), "BungeeCord", out.toByteArray());
+                }
             }
 
         }

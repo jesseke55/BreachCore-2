@@ -13,3 +13,9 @@ commands:
   help:
     usage: /<command>
     description: Get some help!
+  breachcore:
+    usage: /<command>
+    description: The main command of Breach Core
+  server:
+    usage: /<command>
+    description: Go to a server!

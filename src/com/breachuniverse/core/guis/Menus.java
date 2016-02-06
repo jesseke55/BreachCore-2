@@ -62,6 +62,11 @@ public class Menus {
         .name(ChatColor.translateAlternateColorCodes('&', config.getString("Servers.Paintball.Name")))
         .lore(ChatColor.translateAlternateColorCodes('&', config.getString("Servers.Connect.Lore"))).getStack());
 
+        menu.addItem(1, new ItemBuilder(Material.IRON_BARDING)
+        .name(ChatColor.translateAlternateColorCodes('&', config.getString("Servers.Prison.Name")))
+        .lore(ChatColor.translateAlternateColorCodes('&', config.getString("Servers.Connect.Lore")))
+        .getStack());
+
 
 
         return menu.getInventory();
